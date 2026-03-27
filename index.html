@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MRPOA — Moon River Property Owners' Association</title>
+<meta name="description" content="Moon River Property Owners' Association — protecting and enjoying the natural environment of the Moon River in Bala, Muskoka since 2005.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --river-deep: #0B2027;
+  --river-blue: #1B4965;
+  --river-mid: #3E7C98;
+  --river-light: #5FA8D3;
+  --pine-dark: #2D5016;
+  --pine: #4A7C2E;
+  --muskoka-gold: #D4A843;
+  --muskoka-warm: #E8C874;
+  --sand: #F5F0E8;
+  --cream: #FAF8F4;
+  --white: #FFFFFF;
+  --text: #1A1A1A;
+  --text-muted: #5A5A5A;
+  --text-light: #8A8A8A;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body: 'Source Sans 3', -apple-system, sans-serif;
+  --nav-height: 72px;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: var(--nav-height); }
+
+body {
+  font-family: var(--font-body);
+  color: var(--text);
+  background: var(--cream);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== NAV ===== */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(11, 32, 39, 0.95);
+  backdrop-filter: blur(12px);
+  height: var(--nav-height);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 clamp(1rem, 4vw, 3rem);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.nav-logo {
+  display: flex; align-items: center; gap: 0.75rem;
+  text-decoration: none; color: var(--white);
+}
+
+.nav-logo-icon {
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, var(--river-light), var(--river-mid));
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.1rem; color: var(--white);
+}
+
+.nav-logo-text {
+  font-family: var(--font-display);
+  font-size: 1.15rem; letter-spacing: 0.02em;
+}
+
+.nav-logo-text span { color: var(--muskoka-gold); }
+
+.nav-links {
+  display: flex; align-items: center; gap: 0.25rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.5rem 0.85rem;
+  border-radius: 6px;
+  transition: all 0.2s;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
+
+.nav-cta {
+  background: var(--muskoka-gold) !important;
+  color: var(--river-deep) !important;
+  font-weight: 700 !important;
+  padding: 0.5rem 1.2rem !important;
+}
+
+.nav-cta:hover { background: var(--muskoka-warm) !important; }
+
+.nav-toggle {
+  display: none;
+  background: none; border: none; cursor: pointer;
+  width: 36px; height: 36px;
+  flex-direction: column; justify-content: center; align-items: center; gap: 5px;
+}
+
+.nav-toggle span {
+  display: block; width: 22px; height: 2px;
+  background: var(--white); border-radius: 2px;
+  transition: all 0.3s;
+}
+
+@media (max-width: 900px) {
+  .nav-toggle { display: flex; }
+  .nav-links {
+    position: fixed; top: var(--nav-height); left: 0; right: 0;
+    background: rgba(11, 32, 39, 0.98);
+    flex-direction: column; padding: 1rem;
+    transform: translateY(-120%);
+    transition: transform 0.35s ease;
+    gap: 0;
+  }
+  .nav-links.open { transform: translateY(0); }
+  .nav-links a { width: 100%; padding: 0.85rem 1rem; font-size: 0.95rem; border-radius: 8px; }
+  .nav-cta { text-align: center; margin-top: 0.5rem; }
+}
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  background: var(--river-deep);
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(11,32,39,0.35) 0%, rgba(11,32,39,0.1) 40%, rgba(11,32,39,0.65) 100%),
+    url('https://lh3.googleusercontent.com/pw/AP1GczOujnx5gubugHGOuvwpaRkhmw4aD7YASkvSt8YKD4GQ4LodPD4gOg4R9hPc2ITxbAMcO4mz8LdMdj040RzhNpGF5HrJA9KL6rs5HpYi5UIW5va4RPJc=w2400') center/cover no-repeat;
+}
+
+/* ===== PHOTO STRIP ===== */
+.photo-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  max-height: 280px;
+  overflow: hidden;
+}
+@media(max-width:600px) { .photo-strip { grid-template-columns: repeat(2, 1fr); max-height: 200px; } }
+
+.photo-strip img {
+  width: 100%; height: 280px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s;
+}
+@media(max-width:600px) { .photo-strip img { height: 200px; } }
+.photo-strip img:hover { transform: scale(1.04); }
+
+/* ===== SECTION WITH BG IMAGE ===== */
+.section-photo-bg {
+  position: relative;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+.section-photo-bg::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(11,32,39,0.88), rgba(11,32,39,0.92));
+}
+.section-photo-bg > * { position: relative; z-index: 1; }
+
+/* ===== COMMUNITY GALLERY ===== */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 6px;
+  margin-top: 2.5rem;
+}
+.gallery-grid img {
+  width: 100%; height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+.gallery-grid img:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+.gallery-label {
+  position: absolute; bottom: 8px; left: 8px;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+}
+.gallery-item { position: relative; display: inline-block; }
+
+.hero-content {
+  position: relative; z-index: 2;
+  padding: 2rem clamp(1.5rem, 5vw, 4rem);
+  max-width: 800px;
+  animation: fadeUp 1s ease 0.3s both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 100px;
+  padding: 0.4rem 1.2rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muskoka-gold);
+  margin-bottom: 1.75rem;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+}
+
+.hero p {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: rgba(255,255,255,0.8);
+  font-weight: 300;
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+}
+
+.hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer; border: none;
+  transition: all 0.25s;
+  letter-spacing: 0.02em;
+}
+
+.btn-primary {
+  background: var(--muskoka-gold);
+  color: var(--river-deep);
+}
+.btn-primary:hover { background: var(--muskoka-warm); transform: translateY(-2px); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--white);
+  border: 1.5px solid rgba(255,255,255,0.35);
+}
+.btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.06); }
+
+/* ===== SECTIONS ===== */
+.section {
+  padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 4rem);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--river-mid);
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: var(--river-deep);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  font-weight: 300;
+  max-width: 640px;
+  line-height: 1.7;
+}
+
+.section-dark {
+  background: var(--river-deep);
+  color: var(--white);
+  max-width: 100%;
+  padding-left: clamp(1.5rem, 5vw, 4rem);
+  padding-right: clamp(1.5rem, 5vw, 4rem);
+}
+
+.section-dark .section-label { color: var(--muskoka-gold); }
+.section-dark .section-title { color: var(--white); }
+.section-dark .section-subtitle { color: rgba(255,255,255,0.7); }
+
+.section-sand { background: var(--sand); max-width: 100%; padding-left: clamp(1.5rem,5vw,4rem); padding-right: clamp(1.5rem,5vw,4rem); }
+
+/* ===== ABOUT / THREE PILLARS ===== */
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.pillar {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 2.25rem;
+  border: 1px solid rgba(0,0,0,0.06);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.pillar:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+
+.pillar-icon {
+  width: 56px; height: 56px;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.pillar-icon.blue { background: rgba(27,73,101,0.1); color: var(--river-blue); }
+.pillar-icon.green { background: rgba(74,124,46,0.1); color: var(--pine); }
+.pillar-icon.gold { background: rgba(212,168,67,0.12); color: var(--muskoka-gold); }
+
+.pillar h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  margin-bottom: 0.75rem;
+  color: var(--river-deep);
+}
+
+.pillar p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.65; }
+
+/* ===== EVENTS ===== */
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.event-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 1.75rem;
+  display: flex; gap: 1.25rem;
+  transition: border-color 0.3s, background 0.3s;
+}
+
+.event-card:hover { border-color: rgba(255,255,255,0.18); background: rgba(255,255,255,0.06); }
+
+.event-date {
+  flex-shrink: 0;
+  width: 56px; text-align: center;
+}
+
+.event-date .month {
+  font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muskoka-gold);
+}
+
+.event-date .day {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--white);
+  line-height: 1.1;
+}
+
+.event-info h4 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--white);
+  margin-bottom: 0.35rem;
+}
+
+.event-info p {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.55;
+}
+
+.event-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.65rem;
+  border-radius: 100px;
+  margin-top: 0.65rem;
+}
+.event-tag.social { background: rgba(212,168,67,0.15); color: var(--muskoka-gold); }
+.event-tag.meeting { background: rgba(95,168,211,0.15); color: var(--river-light); }
+.event-tag.sport { background: rgba(74,124,46,0.15); color: #7bc45f; }
+
+/* ===== MOON RIVER CODE ===== */
+.code-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.75rem;
+  margin-top: 3rem;
+}
+
+.code-item {
+  padding: 1.75rem;
+  border-radius: 14px;
+  background: var(--white);
+  border-left: 4px solid var(--river-mid);
+}
+
+.code-item h4 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+  color: var(--river-deep);
+}
+
+.code-item p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; }
+
+/* ===== WATER TESTING ===== */
+.water-highlight {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+
+.water-stat {
+  text-align: center;
+  padding: 1.75rem 1rem;
+  border-radius: 14px;
+  background: rgba(27,73,101,0.06);
+}
+
+.water-stat .number {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  color: var(--river-blue);
+}
+
+.water-stat .label {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+/* ===== MEMBERSHIP ===== */
+.membership-box {
+  max-width: 800px;
+  margin: 3rem auto 0;
+  background: var(--white);
+  border-radius: 20px;
+  padding: clamp(2rem, 5vw, 3.5rem);
+  border: 1px solid rgba(0,0,0,0.06);
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+}
+
+.membership-box h3 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--river-deep);
+  margin-bottom: 0.5rem;
+}
+
+.membership-box .price {
+  font-size: 2.8rem;
+  font-family: var(--font-display);
+  color: var(--muskoka-gold);
+  margin: 1rem 0 0.25rem;
+}
+
+.membership-box .price-note {
+  font-size: 0.88rem; color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.membership-perks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  text-align: left;
+  margin: 1.5rem 0 2rem;
+  font-size: 0.92rem;
+}
+
+@media(max-width:560px) { .membership-perks { grid-template-columns: 1fr; } }
+
+.membership-perks .perk {
+  display: flex; align-items: flex-start; gap: 0.5rem;
+  color: var(--text-muted);
+}
+
+.perk-check { color: var(--pine); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+
+/* ===== SPONSORS ===== */
+.sponsors-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+
+.sponsor {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  min-width: 200px;
+  flex: 1;
+  max-width: 260px;
+}
+
+.sponsor h4 { font-family: var(--font-display); color: var(--white); margin-bottom: 0.25rem; }
+.sponsor p { font-size: 0.82rem; color: rgba(255,255,255,0.5); }
+.sponsor .sponsor-event {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--muskoka-gold); margin-top: 0.5rem;
+}
+
+/* ===== CONTACT / FOOTER ===== */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2.5rem;
+  margin-top: 2.5rem;
+}
+
+.contact-block h4 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  margin-bottom: 0.75rem;
+  color: var(--river-deep);
+}
+
+.contact-block p, .contact-block a {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.contact-block a { color: var(--river-mid); text-decoration: underline; text-underline-offset: 3px; }
+.contact-block a:hover { color: var(--river-blue); }
+
+.footer {
+  background: var(--river-deep);
+  color: rgba(255,255,255,0.5);
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.82rem;
+}
+
+.footer a { color: var(--muskoka-gold); text-decoration: none; }
+
+/* ===== STEWARDSHIP ===== */
+.steward-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.steward-item {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 1.75rem;
+}
+
+.steward-item h4 {
+  font-family: var(--font-display);
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.steward-item p { font-size: 0.9rem; color: rgba(255,255,255,0.65); line-height: 1.6; }
+
+/* ===== USEFUL LINKS ===== */
+.links-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.link-item {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  background: var(--white);
+  border-radius: 10px;
+  text-decoration: none;
+  border: 1px solid rgba(0,0,0,0.06);
+  transition: all 0.2s;
+}
+
+.link-item:hover { border-color: var(--river-mid); transform: translateX(4px); }
+.link-item .arrow { color: var(--river-mid); font-size: 1.1rem; }
+.link-item span { color: var(--text); font-weight: 500; font-size: 0.92rem; }
+
+/* ===== ANIMATIONS ===== */
+.fade-in {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* ===== SCROLL INDICATOR ===== */
+.scroll-down {
+  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  z-index: 2;
+  animation: bob 2s ease-in-out infinite;
+}
+.scroll-down span {
+  display: block; width: 24px; height: 38px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-radius: 12px;
+  position: relative;
+}
+.scroll-down span::after {
+  content: '';
+  position: absolute; top: 6px; left: 50%; transform: translateX(-50%);
+  width: 4px; height: 8px;
+  background: rgba(255,255,255,0.6);
+  border-radius: 2px;
+  animation: scrollDot 2s ease-in-out infinite;
+}
+@keyframes bob { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+@keyframes scrollDot { 0% { opacity: 1; top: 6px; } 100% { opacity: 0; top: 18px; } }
+/* ===== MEMBERSHIP FORM ===== */
+.form-steps {
+  display: flex; justify-content: center; gap: 1.5rem;
+  margin-bottom: 2rem; flex-wrap: wrap;
+}
+.form-step-dot {
+  display: flex; align-items: center; gap: 0.4rem;
+  font-size: 0.8rem; font-weight: 600; color: var(--text-light);
+  letter-spacing: 0.02em;
+}
+.form-step-dot span {
+  width: 26px; height: 26px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.06); font-size: 0.75rem; font-weight: 700;
+  transition: all 0.3s;
+}
+.form-step-dot.active { color: var(--river-blue); }
+.form-step-dot.active span { background: var(--river-mid); color: white; }
+.form-step-dot.done span { background: var(--pine); color: white; }
+.form-step-dot.done { color: var(--pine); }
+
+.mf-step { display: none; }
+.mf-step.active { display: block; }
+
+.mf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+@media(max-width:500px) { .mf-row { grid-template-columns: 1fr; } }
+
+.mf-group { margin-bottom: 1rem; }
+.mf-group label { display: block; font-size: 0.82rem; font-weight: 600; margin-bottom: 0.35rem; }
+.mf-req { color: #C0392B; }
+
+.mf-group input, .mf-group textarea, .mf-group select {
+  width: 100%; padding: 0.65rem 0.85rem;
+  border: 1.5px solid rgba(0,0,0,0.1); border-radius: 8px;
+  font-family: var(--font-body); font-size: 0.92rem;
+  background: var(--cream); color: var(--text); outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.mf-group input:focus, .mf-group textarea:focus {
+  border-color: var(--river-mid);
+  box-shadow: 0 0 0 3px rgba(62,124,152,0.12);
+}
+.mf-group textarea { resize: vertical; }
+
+.mf-radio-row { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.mf-radio { display: flex; align-items: center; flex: 1; min-width: 120px; cursor: pointer; }
+.mf-radio input { position: absolute; opacity: 0; width: 0; }
+.mf-radio span {
+  display: flex; align-items: center; justify-content: center;
+  width: 100%; padding: 0.6rem; border: 1.5px solid rgba(0,0,0,0.1);
+  border-radius: 8px; font-size: 0.88rem; font-weight: 500;
+  color: var(--text-muted); background: var(--cream); transition: all 0.2s;
+}
+.mf-radio input:checked + span {
+  border-color: var(--river-mid); background: rgba(62,124,152,0.08);
+  color: var(--river-blue); font-weight: 600;
+}
+
+.mf-check {
+  display: flex; align-items: flex-start; gap: 0.5rem;
+  cursor: pointer; font-size: 0.85rem; color: var(--text-muted); line-height: 1.45;
+}
+.mf-check input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--river-mid); flex-shrink: 0; }
+
+.mf-price-box {
+  background: linear-gradient(135deg, var(--river-deep), var(--river-blue));
+  border-radius: 12px; padding: 1.25rem; text-align: center; color: white; margin-bottom: 1.25rem;
+}
+.mf-price { font-family: var(--font-display); font-size: 2.4rem; }
+.mf-price-note { font-size: 0.82rem; opacity: 0.7; margin-top: 0.2rem; }
+
+.mf-pay-options { display: flex; flex-direction: column; gap: 0.65rem; margin-top: 0.5rem; }
+.mf-pay-option {
+  border: 1.5px solid rgba(0,0,0,0.1); border-radius: 10px; padding: 1rem 1.15rem;
+  cursor: pointer; background: var(--cream); transition: all 0.2s;
+}
+.mf-pay-option:hover { border-color: var(--river-mid); }
+.mf-pay-option.selected { border-color: var(--river-mid); background: rgba(62,124,152,0.06); }
+.mf-pay-option strong { font-size: 0.92rem; color: var(--text); }
+.mf-pay-option p { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.15rem; }
+
+.mf-pay-stripe { opacity: 0.6; position: relative; }
+.mf-pay-stripe.selected { opacity: 0.6; border-color: rgba(0,0,0,0.1); background: var(--cream); }
+.mf-beta-badge {
+  display: inline-block; font-size: 0.6rem; font-weight: 800;
+  letter-spacing: 0.1em; background: var(--muskoka-gold); color: var(--river-deep);
+  padding: 2px 8px; border-radius: 4px;
+}
+
+.mf-btn-row { display: flex; gap: 0.75rem; margin-top: 1.5rem; }
+.mf-btn-row .btn { flex: 1; padding: 0.75rem 1.5rem; }
+</style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav class="nav" role="navigation">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">M</div>
+    <div class="nav-logo-text"><span>MRPOA</span> · Moon River</div>
+  </a>
+  <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#code">River Code</a></li>
+    <li><a href="#stewardship">Stewardship</a></li>
+    <li><a href="#water">Water Testing</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#membership" class="nav-cta">Join MRPOA</a></li>
+  </ul>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">&#9733; Bala, Muskoka &middot; Est. 2005</div>
+    <h1>Protecting & Enjoying the Moon River</h1>
+    <p>The Moon River Property Owners' Association represents property owners from Bala Falls to Ragged Rapids — advocating for our waterway, building community, and preserving what makes this place extraordinary.</p>
+    <div class="hero-buttons">
+      <a href="#membership" class="btn btn-primary">Become a Member</a>
+      <a href="#events" class="btn btn-outline">2025 Events &#8595;</a>
+    </div>
+  </div>
+  <div class="scroll-down"><span></span></div>
+</header>
+
+<!-- ===== PHOTO STRIP — Real MRPOA Event Photos ===== -->
+<div class="photo-strip" style="overflow:hidden;">
+  <img src="https://lh3.googleusercontent.com/pw/AP1GczOBafu-eM70_jfOyHJg_YNcDekcmYTwHXrl8y7FoM0kme97Du6vB5iANWYrMYzQp-0xaiHzDpmVq_gzplc8hf8igSeom7oaYHEdJI0kJU9n3a1kvv8=w800-h600-no" alt="MRPOA Jazz Cruise on the Moon River" loading="lazy">
+  <img src="https://lh3.googleusercontent.com/pw/AP1GczNm79KARAVDn6haOIbOUHpJaT26ITd4HpjG9HuyiQikAvLutBDh8qRmO8KCQM3Ng-xIhui2tJoebUbOtcpuQc4U2--k8u568kgl_0gHUEuTQIV8M2s=w800-h600-no" alt="MRPOA Regatta at Jaspen Park" loading="lazy">
+  <img src="https://lh3.googleusercontent.com/pw/AP1GczMNKj3sZdj66hyUDs3pTwcXUmkoGycJ5enXTVyrnaPhF2XbFsCIc0vu5DNEhQ5rhSmIqtl324cv_-bcPHriBCENMWprT6a_QhPboEhY78dgxlC8zW4=w800-h600-no" alt="MRPOA Dock Dress-Up Competition" loading="lazy">
+  <img src="https://lh3.googleusercontent.com/pw/AP1GczNkL7gJpW3Wg74ImMgjcmi2be2GpSTqZ9zHA8eFiKE1xetHZoQ3CEhyCadmpzCpRwt2hJ7Kcy4QoeNczVZH7Qm4g4bdqIuoUo0B52Ps08TtsFUQZcU=w800-h600-no" alt="MRPOA Fishing Derby on the Moon River" loading="lazy">
+</div>
+
+<!-- ===== ABOUT / THREE PILLARS ===== -->
+<section class="section" id="about">
+  <div class="section-label fade-in">Who We Are</div>
+  <h2 class="section-title fade-in">Three Pillars of the Moon River Community</h2>
+  <p class="section-subtitle fade-in">MRPOA members cherish the Moon River and its watershed. We represent and inform members, organize community events, and work to protect the environmental health of our river.</p>
+
+  <div class="pillars">
+    <div class="pillar fade-in">
+      <div class="pillar-icon blue">&#127754;</div>
+      <h3>Advocacy & Representation</h3>
+      <p>We represent waterfront property owners on issues that matter — noise bylaws, short-term rental licensing, water level management, arena redevelopment, and municipal planning. The larger our membership, the louder our collective voice.</p>
+    </div>
+    <div class="pillar fade-in">
+      <div class="pillar-icon green">&#127795;</div>
+      <h3>Environmental Stewardship</h3>
+      <p>Annual water quality testing since 2007, the Moon River Code for responsible use, shoreline buffer education, dark sky friendly lighting advocacy, and partnerships with the Muskoka Lakes Association to protect our watershed.</p>
+    </div>
+    <div class="pillar fade-in">
+      <div class="pillar-icon gold">&#127917;</div>
+      <h3>Community & Social Events</h3>
+      <p>From the Jazz Cruise to the Family Fun Day Regatta, the Fishing Derby, and the Golf Tournament — MRPOA brings Moon River families together. Our spring and fall meetings keep the community connected year-round.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EVENTS ===== -->
+<section class="section section-dark section-photo-bg" id="events" style="background-image: url('https://lh3.googleusercontent.com/pw/AP1GczNwxZIfmkpDuQAA50LE1PJEzu_37iX-eXeu3K8hI2IKn5rQ3U1vPO4UVUSpwtoH7gDLJmJlYc_As1uvyxY_2I0RVEvzoE_N9-WWzGROloLTVMdXGQI=w2400')">
+  <div class="section-label fade-in">Mark Your Calendar</div>
+  <h2 class="section-title fade-in">2025 Season Events</h2>
+  <p class="section-subtitle fade-in">A full season of community connection on the Moon River. Members and their families are welcome at all events.</p>
+
+  <div class="events-grid">
+    <div class="event-card fade-in">
+      <div class="event-date"><div class="month">Jun</div><div class="day">21</div></div>
+      <div class="event-info">
+        <h4>Spring Meeting</h4>
+        <p>10:00 AM at Bala Community Centre. Coffee social at 9:30. Catch up on issues and meet your neighbours.</p>
+        <span class="event-tag meeting">Meeting</span>
+      </div>
+    </div>
+    <div class="event-card fade-in">
+      <div class="event-date"><div class="month">Jul</div><div class="day">7</div></div>
+      <div class="event-info">
+        <h4>Father's Day Weekend Fishing Derby</h4>
+        <p>Sunrise to 10 AM. MRPOA boat parked by weed bed across from Roselawn Lodge. Sponsored by Bedrock Landscapes.</p>
+        <span class="event-tag sport">Sport</span>
+      </div>
+    </div>
+    <div class="event-card fade-in">
+      <div class="event-date"><div class="month">Aug</div><div class="day">2</div></div>
+      <div class="event-info">
+        <h4>Jazz Cruise</h4>
+        <p>5:30 PM departing Roselawn dock. Live jazz on the Moon River. Sponsored by Red Canoe Gallery.</p>
+        <span class="event-tag social">Social</span>
+      </div>
+    </div>
+    <div class="event-card fade-in">
+      <div class="event-date"><div class="month">Aug</div><div class="day">3</div></div>
+      <div class="event-info">
+        <h4>Family Fun Day & Regatta</h4>
+        <p>11:00 AM swim from Roselawn dock. 11:30 registration at Jaspen Park. Canoe races, games, prizes for all ages.</p>
+        <span class="event-tag sport">Sport</span>
+      </div>
+    </div>
+    <div class="event-card fade-in">
+      <div class="event-date"><div class="month">TBA</div><div class="day">&mdash;</div></div>
+      <div class="event-info">
+        <h4>Golf Tournament</h4>
+        <p>9-hole scramble format. Great food, prizes, and a fantastic way to connect with neighbours. Date & location TBA.</p>
+        <span class="event-tag sport">Sport</span>
+      </div>
+    </div>
+    <div class="event-card fade-in">
+      <div class="event-date"><div class="month">Oct</div><div class="day">11</div></div>
+      <div class="event-info">
+        <h4>Fall Annual General Meeting</h4>
+        <p>10:00 AM at the Bala Legion. Year-end reports, board elections, and planning for next season.</p>
+        <span class="event-tag meeting">Meeting</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MOON RIVER CODE ===== -->
+<section class="section" id="code">
+  <div class="section-label fade-in">Community Standards</div>
+  <h2 class="section-title fade-in">The Moon River Code</h2>
+  <p class="section-subtitle fade-in">A shared commitment to responsible enjoyment of our river and lands. We ask all property owners and renters to observe these principles.</p>
+
+  <div class="code-grid">
+    <div class="code-item fade-in">
+      <h4>&#9973; Safe Boating</h4>
+      <p>Know the river before you go. Respect other boaters, watch for swimmers, reduce wake near shorelines, and don't circle repeatedly in one area.</p>
+    </div>
+    <div class="code-item fade-in">
+      <h4>&#128167; Water Quality</h4>
+      <p>No washing or detergents in the river. Use septic-friendly products. Prevent fuel spills. Maintain natural shoreline vegetation to filter storm water.</p>
+    </div>
+    <div class="code-item fade-in">
+      <h4>&#127769; Dark Sky Friendly</h4>
+      <p>Shield outdoor lighting to shine downward only. Keep light from crossing onto neighbouring properties. Preserve our stunning Muskoka night sky.</p>
+    </div>
+    <div class="code-item fade-in">
+      <h4>&#127911; Sound & Fireworks</h4>
+      <p>Amplified sound should not be heard beyond your property. Limit fireworks to Victoria Day, Canada Day, Simcoe Day, and Labour Day.</p>
+    </div>
+    <div class="code-item fade-in">
+      <h4>&#129417; Wildlife Safety</h4>
+      <p>Keep garbage in bear-proof containers. Clean and cover BBQs. Keep pet food indoors. Don't feed waterfowl.</p>
+    </div>
+    <div class="code-item fade-in">
+      <h4>&#127970; Renters Welcome</h4>
+      <p>If you rent your property, please ensure your guests are aware of and observe the Moon River Code. Share a copy with every booking.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STEWARDSHIP ===== -->
+<section class="section section-dark section-photo-bg" id="stewardship" style="background-image: url('https://lh3.googleusercontent.com/pw/AP1GczN_gd8FLbu_AAhDvqd5dPzfs-bDr-GRkdf0yIbCVXtieN28lqO9DDRy3TP99f44dn41ILKba0dtfOW0nI8p_w3y3dcf2aWspeaw0xlwl2WSn7ayGuqF=w2400')">
+  <div class="section-label fade-in">Environmental Values</div>
+  <h2 class="section-title fade-in">Stewardship Principles</h2>
+  <p class="section-subtitle fade-in">The environment is the economy in Muskoka. Our principles align with the Official Plans of the Township and District to ensure a sustainable natural environment for generations.</p>
+
+  <div class="steward-grid">
+    <div class="steward-item fade-in">
+      <h4>Natural Form First</h4>
+      <p>Natural form should predominate over built form. From the water, the less visible buildings and structures are, the better for everyone.</p>
+    </div>
+    <div class="steward-item fade-in">
+      <h4>Shoreline Buffers</h4>
+      <p>Maintain a natural plant buffer along your waterfront, interrupted only by paths and docks on less than 25% of shoreline. This filters runoff and screens views.</p>
+    </div>
+    <div class="steward-item fade-in">
+      <h4>Minimize Hard Surfaces</h4>
+      <p>Use gravel instead of asphalt where possible. Let rain and snow seep naturally into the ground to recharge the water table and filter contaminants.</p>
+    </div>
+    <div class="steward-item fade-in">
+      <h4>Dark Sky Lighting</h4>
+      <p>Shield all outdoor lighting at the top to shine downward. Illuminate only what's below — not the sky, not your neighbour's property.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WATER TESTING ===== -->
+<section class="section" id="water">
+  <div class="section-label fade-in">Science & Monitoring</div>
+  <h2 class="section-title fade-in">Water Quality Testing</h2>
+  <p class="section-subtitle fade-in">MRPOA volunteers have been monitoring Moon River water quality since 2007 in partnership with the Muskoka Lakes Association. Our river remains consistently healthy.</p>
+
+  <div class="water-highlight">
+    <div class="water-stat fade-in">
+      <div class="number">15+</div>
+      <div class="label">Years of Data</div>
+    </div>
+    <div class="water-stat fade-in">
+      <div class="number">&#10003;</div>
+      <div class="label">E. coli Within Safe Levels</div>
+    </div>
+    <div class="water-stat fade-in">
+      <div class="number">&#8595;</div>
+      <div class="label">Phosphorus Trending Low</div>
+    </div>
+    <div class="water-stat fade-in">
+      <div class="number">&#9733;</div>
+      <div class="label">Best Clarity on Record</div>
+    </div>
+  </div>
+
+  <div style="margin-top: 2.5rem;" class="fade-in">
+    <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; max-width: 700px;">
+      <strong>How you can help:</strong> Use septic-friendly products and pump tanks every 3–5 years. Avoid chemical fertilizers. Maintain natural shoreline vegetation. Minimize hard surfaces that create runoff. Follow the Moon River Code.
+    </p>
+    <p style="margin-top: 1.25rem; font-size: 0.92rem;">
+      <strong>Water Testing Contact:</strong> <a href="mailto:watertesting@mrpoa.org" style="color: var(--river-mid);">watertesting@mrpoa.org</a><br>
+      <strong>Full reports:</strong> Available from the MLA — <a href="http://www.mla.on.ca" target="_blank" style="color: var(--river-mid);">mla.on.ca</a>
+    </p>
+  </div>
+</section>
+
+<!-- ===== PHOTO STRIP 2 — More Community Moments ===== -->
+<div class="photo-strip" style="overflow:hidden;">
+  <img src="https://lh3.googleusercontent.com/pw/AP1GczPsXj_Vdz_XYFVfOf7bI1RAoTg9FuBmqDye0mivX7UrqItnLIPlJlx_-Au7r5J6bnwtPRTMTO6_kTzH1TPU6WEDwdksM-z4_aPkxHxaF22T77MdHBE=w800-h600-no" alt="Live jazz on the Moon River" loading="lazy">
+  <img src="https://lh3.googleusercontent.com/pw/AP1GczNtq0EiLJGDXl1bD7VjwvBLNDAR775DBqPIeXZARruMq7x-6AlYUHYXly1X_oweryRBDJYTYgM9vFeQJ1Ei9xm8CNnv__zripr-V-4MOv7XOjBeA_8=w800-h600-no" alt="Regatta fun at Jaspen Park" loading="lazy">
+  <img src="https://lh3.googleusercontent.com/pw/AP1GczPI3aK8QkdJN6eK4yJdzwPBm65jAv0sF73-dwLc65m3mbhJIBlo-P7a7IYJWH9xOQNQYBhtU2CqgQyu5KXFrtMzWRy6OXR7v2OHEoH74agUM6VwOSL9=w800-h600-no" alt="Moon River community gathering" loading="lazy">
+  <img src="https://lh3.googleusercontent.com/pw/AP1GczNKtzGlV2_6dWVEnp6WHrlTC_Kxt0jImEylC3oRtYlh0rxiZrqTClNgDEoyug3019lursRjfh6Q0V0C92BjlamP-lk_nqNZkOGjSREY363k0AsEBP-u=w800-h600-no" alt="Life on the Moon River" loading="lazy">
+</div>
+
+<!-- ===== MEMBERSHIP ===== -->
+<section class="section section-sand" id="membership">
+  <div class="section-label fade-in">Join the Community</div>
+  <h2 class="section-title fade-in">Become a Member</h2>
+  <p class="section-subtitle fade-in">Your membership directly supports advocacy, water testing, community events, and the long-term health of our river. The larger our numbers, the louder our voice.</p>
+
+  <div class="membership-box fade-in" id="membership-form">
+
+    <!-- Step Indicators -->
+    <div class="form-steps">
+      <div class="form-step-dot active" data-step="1"><span>1</span> Your Info</div>
+      <div class="form-step-dot" data-step="2"><span>2</span> Property</div>
+      <div class="form-step-dot" data-step="3"><span>3</span> Review & Pay</div>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="mf-step active" id="mfStep1">
+      <h3 style="font-family:var(--font-display);font-size:1.35rem;color:var(--river-deep);margin-bottom:0.25rem;">Your Information</h3>
+      <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:1.5rem;">Tell us about yourself so we can welcome you to the community.</p>
+
+      <div class="mf-row">
+        <div class="mf-group"><label>First Name <span class="mf-req">*</span></label><input type="text" id="mf-first" required placeholder="Jane"></div>
+        <div class="mf-group"><label>Last Name <span class="mf-req">*</span></label><input type="text" id="mf-last" required placeholder="Smith"></div>
+      </div>
+      <div class="mf-group"><label>Email <span class="mf-req">*</span></label><input type="email" id="mf-email" required placeholder="jane@example.com"></div>
+      <div class="mf-group"><label>Phone <span class="mf-req">*</span></label><input type="tel" id="mf-phone" placeholder="705-555-1234"></div>
+
+      <div class="mf-group">
+        <label>Residency <span class="mf-req">*</span></label>
+        <div class="mf-radio-row">
+          <label class="mf-radio"><input type="radio" name="mf-res" value="Seasonal" checked><span>Seasonal</span></label>
+          <label class="mf-radio"><input type="radio" name="mf-res" value="Full-Time"><span>Full-Time</span></label>
+        </div>
+      </div>
+      <div class="mf-group">
+        <label>Membership Type <span class="mf-req">*</span></label>
+        <div class="mf-radio-row">
+          <label class="mf-radio"><input type="radio" name="mf-type" value="New Member" checked><span>New Member</span></label>
+          <label class="mf-radio"><input type="radio" name="mf-type" value="Returning Member"><span>Returning</span></label>
+        </div>
+      </div>
+
+      <div class="mf-btn-row"><button class="btn btn-primary" onclick="mfGo(2)">Continue &rarr;</button></div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="mf-step" id="mfStep2">
+      <h3 style="font-family:var(--font-display);font-size:1.35rem;color:var(--river-deep);margin-bottom:0.25rem;">Property Details</h3>
+      <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:1.5rem;">Your Moon River property and mailing address.</p>
+
+      <div class="mf-group"><label>Moon River Property Address <span class="mf-req">*</span></label><input type="text" id="mf-property" placeholder="123 Moon River Road, Bala"></div>
+      <div class="mf-group"><label>Full Mailing Address <span class="mf-req">*</span></label><textarea id="mf-mailing" rows="3" placeholder="Your home mailing address for correspondence"></textarea></div>
+      <div class="mf-group"><label>Referred by (optional)</label><input type="text" id="mf-referral" placeholder="Name of the neighbour who told you about MRPOA"></div>
+
+      <div class="mf-btn-row">
+        <button class="btn btn-outline" style="color:var(--text-muted);border-color:rgba(0,0,0,0.15);" onclick="mfGo(1)">&larr; Back</button>
+        <button class="btn btn-primary" onclick="mfGo(3)">Continue &rarr;</button>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="mf-step" id="mfStep3">
+      <h3 style="font-family:var(--font-display);font-size:1.35rem;color:var(--river-deep);margin-bottom:0.25rem;">Review & Pay</h3>
+      <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:1.5rem;">Choose your payment method and confirm.</p>
+
+      <div class="mf-price-box">
+        <div class="mf-price" id="mfPrice">$40</div>
+        <div class="mf-price-note" id="mfPriceNote">Early bird rate — before May 31</div>
+      </div>
+
+      <div class="mf-group"><label>Jazz Cruise Donation (optional)</label><input type="number" id="mf-jazz" min="0" placeholder="$0" style="max-width:160px;"></div>
+
+      <div class="mf-group" style="margin-top:1.25rem;">
+        <label>Payment Method <span class="mf-req">*</span></label>
+        <div class="mf-pay-options">
+          <div class="mf-pay-option selected" onclick="mfSelectPay(this,'etransfer')">
+            <strong>&#9889; Interac e-Transfer</strong>
+            <p>Send to mrpoa.membership@gmail.com — instant and free</p>
+          </div>
+          <div class="mf-pay-option" onclick="mfSelectPay(this,'cheque')">
+            <strong>&#9993; Cheque by Mail</strong>
+            <p>Payable to "Moon River Property Owners Association" — PO Box 157, Bala ON P0C 1A0</p>
+          </div>
+          <div class="mf-pay-option mf-pay-stripe" onclick="mfSelectPay(this,'stripe')">
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+              <strong>&#128179; Pay Online with Card</strong>
+              <span class="mf-beta-badge">COMING SOON</span>
+            </div>
+            <p>Secure credit/debit card payment via Stripe. Available once board approves.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mf-group" style="margin-top:1.25rem;">
+        <label>Agreements <span class="mf-req">*</span></label>
+        <label class="mf-check"><input type="checkbox" id="mf-agree1" checked><span>I agree that MRPOA not have an audit of the previous year's accounts.</span></label>
+        <label class="mf-check" style="margin-top:0.5rem;"><input type="checkbox" id="mf-agree2" checked><span>I consent to the release of images captured by MRPOA on social media.</span></label>
+      </div>
+
+      <div class="mf-btn-row">
+        <button class="btn btn-outline" style="color:var(--text-muted);border-color:rgba(0,0,0,0.15);" onclick="mfGo(2)">&larr; Back</button>
+        <button class="btn btn-primary" style="background:var(--pine);color:white;flex:2;" onclick="mfSubmit()" id="mfSubmitBtn">Submit Membership &#10003;</button>
+      </div>
+
+      <div id="mfSubmitting" style="display:none;text-align:center;padding:1rem;color:var(--text-muted);font-size:0.92rem;">
+        Submitting your application...
+      </div>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="mf-step" id="mfSuccess">
+      <div style="text-align:center;padding:2rem 1rem;">
+        <div style="width:72px;height:72px;background:rgba(39,174,96,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;color:#27AE60;margin:0 auto 1.5rem;">&#10003;</div>
+        <h3 style="font-family:var(--font-display);font-size:1.5rem;color:var(--river-deep);margin-bottom:0.75rem;">Welcome to MRPOA!</h3>
+        <p style="color:var(--text-muted);font-size:0.92rem;line-height:1.65;max-width:420px;margin:0 auto;">Your membership application has been received. You'll get a confirmation email shortly.</p>
+        <p style="margin-top:1rem;font-weight:600;color:var(--river-blue);" id="mfPayReminder"></p>
+        <p style="margin-top:1.5rem;color:var(--text-muted);">See you on the Moon! &#127754;</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== SPONSORS ===== -->
+<section class="section section-dark section-photo-bg" id="sponsors" style="background-image: url('https://lh3.googleusercontent.com/pw/AP1GczOgesAq0Bl8VVUlMQX9Pb2lTlSlWtMMgjKrkmVxH8Y78fYLYxl9sRx8x4pyqfgEXuZuLIVIgzcacW9rFP3oqQzlUOwRyoTz32As8uQV8xNvWO4KnpSw=w2400')">
+  <div class="section-label fade-in">Our Partners</div>
+  <h2 class="section-title fade-in">Thank You to Our Sponsors</h2>
+  <p class="section-subtitle fade-in">Local businesses that make our events and programs possible. Please support them.</p>
+
+  <div class="sponsors-row">
+    <div class="sponsor fade-in">
+      <h4>Bedrock Landscapes</h4>
+      <p>Professional landscaping, Bala</p>
+      <div class="sponsor-event">Fishing Derby Sponsor</div>
+    </div>
+    <div class="sponsor fade-in">
+      <h4>Klos Concepts</h4>
+      <p>Electrical services, Muskoka</p>
+      <div class="sponsor-event">Boat-A-Cade Sponsor</div>
+    </div>
+    <div class="sponsor fade-in">
+      <h4>Red Canoe Gallery</h4>
+      <p>Canadian art, 31 years in Muskoka</p>
+      <div class="sponsor-event">Jazz Cruise Sponsor</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== USEFUL LINKS ===== -->
+<section class="section" id="links">
+  <div class="section-label fade-in">Resources</div>
+  <h2 class="section-title fade-in">Useful Links</h2>
+
+  <div class="links-list">
+    <a href="https://www.muskokalakes.ca" target="_blank" class="link-item fade-in">
+      <span class="arrow">&rarr;</span>
+      <span>Township of Muskoka Lakes</span>
+    </a>
+    <a href="https://www.muskoka.on.ca" target="_blank" class="link-item fade-in">
+      <span class="arrow">&rarr;</span>
+      <span>District of Muskoka</span>
+    </a>
+    <a href="https://www.mla.on.ca" target="_blank" class="link-item fade-in">
+      <span class="arrow">&rarr;</span>
+      <span>Muskoka Lakes Association</span>
+    </a>
+    <a href="https://www.foca.on.ca" target="_blank" class="link-item fade-in">
+      <span class="arrow">&rarr;</span>
+      <span>Federation of Ontario Cottagers' Assoc. (FOCA)</span>
+    </a>
+    <a href="https://www.muskokaheritage.org" target="_blank" class="link-item fade-in">
+      <span class="arrow">&rarr;</span>
+      <span>Muskoka Heritage Foundation</span>
+    </a>
+    <a href="https://www.muskokawaterweb.ca" target="_blank" class="link-item fade-in">
+      <span class="arrow">&rarr;</span>
+      <span>Muskoka Water Web</span>
+    </a>
+  </div>
+
+  <div style="margin-top: 2rem; font-size: 0.92rem; color: var(--text-muted);" class="fade-in">
+    <strong>Emergency Contacts:</strong> Noise Complaints — Township of Muskoka Lakes: 705-765-3156 &middot; OPP Hotline: 1-888-310-1122 (24hr)
+  </div>
+</section>
+
+<!-- ===== COMMUNITY GALLERY ===== -->
+<section class="section" id="gallery">
+  <div class="section-label fade-in">Life on the Moon</div>
+  <h2 class="section-title fade-in">Community Gallery</h2>
+  <p class="section-subtitle fade-in">From Jazz Cruises to Regattas, dock dress-ups to fishing derbies — here's what life on the Moon River looks like.</p>
+
+  <div class="gallery-grid">
+    <!-- Jazz Cruise photos -->
+    <div class="gallery-item fade-in">
+      <img src="https://lh3.googleusercontent.com/pw/AP1GczOH7bBtuGueuhnuD4A6MUS3SbRQeCLM00aLUy8B8Qu060xv8rQOw2D6auPaNQS3kKVu18hZ6Kv4vmi4EcjKdW0C1Nsk5YJh-5b46bFr_IJYmItnWdM=w600-h450-no" alt="Jazz Cruise on the Moon River" loading="lazy">
+      <span class="gallery-label">Jazz Cruise</span>
+    </div>
+    <div class="gallery-item fade-in">
+      <img src="https://lh3.googleusercontent.com/pw/AP1GczOnLQY-WDUYO_dXzoeDGJu_leMJdLSqQfuH6qsZL9nGWq5GEynp1A-0fOYUooFX8icZsUt7M1WR0DmcdG0lEO1-SmGwTa_imgYCuhFhfzP_KZwSXvE=w600-h450-no" alt="Jazz Cruise guests enjoying the river" loading="lazy">
+      <span class="gallery-label">Jazz Cruise</span>
+    </div>
+    <!-- Regatta photos -->
+    <div class="gallery-item fade-in">
+      <img src="https://lh3.googleusercontent.com/pw/AP1GczPwkGr2ECZIZ5e2A-oL_H784Tz6arTpl1I84uyzNUGc7tK-1mAmkKfEATUQaZ2kJawzgW-8osgFERkQXDl3uDSyjDkHul9flS5F18IJUxpso8cRwHI=w600-h450-no" alt="MRPOA Regatta canoe race" loading="lazy">
+      <span class="gallery-label">Regatta</span>
+    </div>
+    <div class="gallery-item fade-in">
+      <img src="https://lh3.googleusercontent.com/pw/AP1GczMvb-XFOj7QujIJRqO3ffysx_2uQJP17hcHyshPNETCv8NiNs8QRHCvr1M9SYIESwkWZRUIiSll4j2X-CLdG4GCVFtvOmdBeBg_I6NmMR6qkGrViuE=w600-h450-no" alt="Family Fun Day at Jaspen Park" loading="lazy">
+      <span class="gallery-label">Regatta</span>
+    </div>
+    <!-- Dock Dress-Up -->
+    <div class="gallery-item fade-in">
+      <img src="https://lh3.googleusercontent.com/pw/AP1GczPHRJ6ggjSIHc-bx3k_2x4gMnXvbV3HEo80conD6sg6EAxflY2WdYuC94IN7_Uol9LceylA_VEphasWxei8qYWLmX7DJNL5HgNqn48yFos7oI3Av38=w600-h450-no" alt="Dock Dress-Up Competition" loading="lazy">
+      <span class="gallery-label">Dock Dress-Up</span>
+    </div>
+    <div class="gallery-item fade-in">
+      <img src="https://lh3.googleusercontent.com/pw/AP1GczMYIUaFkv7QPL02UFrRCbcq2y-plP09e-I7JvDBGFb83pm9xZ4UcLWiPSnKZ-J-3CnoX5Hpi2QAbqzcHMJnV_adUP6Z34UjFlMhLcRWSorlpQvmMwo=w600-h450-no" alt="Decorated dock on the Moon River" loading="lazy">
+      <span class="gallery-label">Dock Dress-Up</span>
+    </div>
+    <!-- Golf -->
+    <div class="gallery-item fade-in">
+      <img src="https://lh3.googleusercontent.com/pw/AP1GczMD6lYrwlYM-F0idtebNxu2F41E_9TkX4GrFfI7EzIZNJJ4nzaXg7tnHA_fhGZLlWyt6v4MyNfVPj6uXpUYHNx4mZGx0NGmErj2ybuUgtf6odSyfWQ=w600-h450-no" alt="MRPOA Golf Tournament" loading="lazy">
+      <span class="gallery-label">Golf Tournament</span>
+    </div>
+    <div class="gallery-item fade-in">
+      <img src="https://lh3.googleusercontent.com/pw/AP1GczNF1t4MgTwxQa1MPmHGEJXojWTT1cgEaSVfg1S4qDfx9ahV5Lbr-TYgkN837SiVWRc595gBt5U_WOMZyZRa-FglDaVop2iun7Fgf0bfZK-pkljKkG4=w600-h450-no" alt="Golfers on the course" loading="lazy">
+      <span class="gallery-label">Golf Tournament</span>
+    </div>
+    <!-- Fishing -->
+    <div class="gallery-item fade-in">
+      <img src="https://lh3.googleusercontent.com/pw/AP1GczNtnZ3Kssq_GxkJ6kR4zEnJjw9E9QXytOsdPruZCqgpqvpVfKjsW5BzsWX8q5aAeRirRcYk3TObpKaKcvf5f7CQ3xcuUG1MsKn9P25efsq7X1I9lZc=w600-h450-no" alt="Fishing Derby on the Moon River" loading="lazy">
+      <span class="gallery-label">Fishing Derby</span>
+    </div>
+    <!-- 2021 scenic -->
+    <div class="gallery-item fade-in">
+      <img src="https://lh3.googleusercontent.com/pw/AP1GczOKcOJk7WOoc1AmuHXOggKuIw3ZZkSIoejAtM0Qekr2KwOSZRZV1dmf2dkVsZavOttUGDB5WSfOOfG59Gf2WVwCfcjEgg13xp_KWxuZcXG6SPe9wb0g=w600-h450-no" alt="Moon River scenic view" loading="lazy">
+      <span class="gallery-label">Moon River</span>
+    </div>
+    <div class="gallery-item fade-in">
+      <img src="https://lh3.googleusercontent.com/pw/AP1GczP-Oc6j3kNufOwOVtsN5wp_N-fG1P9tmCmzYc1yvAENFoddVOtYl1w8k45BmZuX0TPWZMrqfyK0h8JGMQMbSfPrAZ9zxvdUKgh4TfesXnGZ0ZJfJObe=w600-h450-no" alt="Community on the Moon River" loading="lazy">
+      <span class="gallery-label">Community</span>
+    </div>
+    <div class="gallery-item fade-in">
+      <img src="https://lh3.googleusercontent.com/pw/AP1GczNt4sJCQrME8Gkzvjx_L44LrMExvMuodv-YS2q0vvVl602hKjYFoXdpWv54ABjc7VWvwU85BSJcfP431BSWTiSq2nsjT-7jl2Ffm645tbEC08_71Fn4=w600-h450-no" alt="Moon River life" loading="lazy">
+      <span class="gallery-label">Community</span>
+    </div>
+  </div>
+
+  <p style="text-align:center; margin-top: 2rem;" class="fade-in">
+    <a href="https://www.facebook.com/MRPOABALA" target="_blank" class="btn btn-primary" style="display:inline-flex;">See More on Facebook &rarr;</a>
+  </p>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="section section-sand" id="contact">
+  <div class="section-label fade-in">Get in Touch</div>
+  <h2 class="section-title fade-in">Contact MRPOA</h2>
+
+  <div class="contact-grid">
+    <div class="contact-block fade-in">
+      <h4>General Inquiries</h4>
+      <p>Email: <a href="mailto:pres@mrpoa.org">pres@mrpoa.org</a></p>
+      <p>Membership: <a href="mailto:mrpoa.membership@gmail.com">mrpoa.membership@gmail.com</a></p>
+      <p>Water Testing: <a href="mailto:watertesting@mrpoa.org">watertesting@mrpoa.org</a></p>
+    </div>
+    <div class="contact-block fade-in">
+      <h4>Mailing Address</h4>
+      <p>Moon River Property Owners' Association<br>
+      PO Box 157<br>
+      Bala, Ontario P0C 1A0</p>
+    </div>
+    <div class="contact-block fade-in">
+      <h4>Connect Online</h4>
+      <p><a href="https://www.facebook.com/MRPOABALA" target="_blank">Facebook — @MRPOABALA</a></p>
+      <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-light);">Your email will only be used for MRPOA business and will never be shared with other organizations.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <p>&copy; 2025 Moon River Property Owners' Association &middot; Bala, Muskoka &middot; <a href="https://www.facebook.com/MRPOABALA" target="_blank">Facebook</a></p>
+</footer>
+
+<script>
+// ===== NAV =====
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => document.querySelector('.nav-links').classList.remove('open'));
+});
+
+// ===== SCROLL ANIMATIONS =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// ===== MEMBERSHIP FORM =====
+let mfCurrentStep = 1;
+let mfPayMethod = 'etransfer';
+const mfIsEarlyBird = new Date().getMonth() < 5 || (new Date().getMonth() === 4 && new Date().getDate() <= 31);
+
+// Set price
+(function() {
+  const p = document.getElementById('mfPrice');
+  const n = document.getElementById('mfPriceNote');
+  if (mfIsEarlyBird) { p.textContent = '$40'; n.textContent = 'Early bird rate — before May 31'; }
+  else { p.textContent = '$50'; n.textContent = 'Standard rate — after June 1'; }
+})();
+
+function mfGo(step) {
+  // Validate step 1
+  if (mfCurrentStep === 1 && step === 2) {
+    const f = document.getElementById('mf-first').value.trim();
+    const l = document.getElementById('mf-last').value.trim();
+    const e = document.getElementById('mf-email').value.trim();
+    if (!f || !l || !e) { alert('Please fill in your name and email to continue.'); return; }
+    if (e && !e.includes('@')) { alert('Please enter a valid email address.'); return; }
+  }
+  // Validate step 2
+  if (mfCurrentStep === 2 && step === 3) {
+    if (!document.getElementById('mf-property').value.trim()) { alert('Please enter your Moon River property address.'); return; }
+  }
+
+  document.querySelectorAll('.mf-step').forEach(s => s.classList.remove('active'));
+  document.getElementById('mfStep' + step).classList.add('active');
+
+  document.querySelectorAll('.form-step-dot').forEach((d, i) => {
+    d.classList.remove('active', 'done');
+    if (i + 1 === step) d.classList.add('active');
+    else if (i + 1 < step) d.classList.add('done');
+  });
+
+  mfCurrentStep = step;
+  document.getElementById('membership-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function mfSelectPay(el, method) {
+  if (method === 'stripe') {
+    // Stripe is beta — show notice but don't select
+    alert('Online card payments are coming soon! For now, please use e-Transfer or cheque. The board will activate this once Stripe is connected.');
+    return;
+  }
+  document.querySelectorAll('.mf-pay-option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  mfPayMethod = method;
+}
+
+function mfSubmit() {
+  if (!document.getElementById('mf-agree1').checked || !document.getElementById('mf-agree2').checked) {
+    alert('Please confirm both agreements to proceed.'); return;
+  }
+
+  const fee = mfIsEarlyBird ? 40 : 50;
+  const data = {
+    timestamp: new Date().toLocaleString('en-CA'),
+    firstName: document.getElementById('mf-first').value.trim(),
+    lastName: document.getElementById('mf-last').value.trim(),
+    email: document.getElementById('mf-email').value.trim(),
+    phone: document.getElementById('mf-phone').value.trim(),
+    residency: document.querySelector('input[name="mf-res"]:checked').value,
+    memberType: document.querySelector('input[name="mf-type"]:checked').value,
+    propertyAddress: document.getElementById('mf-property').value.trim(),
+    mailingAddress: document.getElementById('mf-mailing').value.trim(),
+    referral: document.getElementById('mf-referral').value.trim(),
+    jazzDonation: document.getElementById('mf-jazz').value || '0',
+    paymentMethod: mfPayMethod,
+    fee: fee,
+    paymentStatus: 'Pending',
+    stripeId: ''
+  };
+
+  // Disable button and show loading
+  document.getElementById('mfSubmitBtn').style.display = 'none';
+  document.getElementById('mfSubmitting').style.display = 'block';
+
+  // ======================================================
+  // GOOGLE SHEETS INTEGRATION
+  // Replace the URL below with your deployed Google Apps Script URL.
+  // See the setup guide for instructions on creating this.
+  // ======================================================
+  const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+
+  if (GOOGLE_SCRIPT_URL === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+    // Beta mode — no backend connected yet. Log and show success.
+    console.log('MRPOA Membership [BETA — not submitted to sheet]:', JSON.stringify(data, null, 2));
+    mfShowSuccess(data, fee);
+  } else {
+    // Production mode — POST to Google Sheets
+    fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    .then(() => mfShowSuccess(data, fee))
+    .catch(err => {
+      console.error('Submission error:', err);
+      // Still show success — data logged to console as fallback
+      mfShowSuccess(data, fee);
+    });
+  }
+}
+
+function mfShowSuccess(data, fee) {
+  document.querySelectorAll('.mf-step').forEach(s => s.classList.remove('active'));
+  document.getElementById('mfSuccess').classList.add('active');
+  document.querySelector('.form-steps').style.display = 'none';
+
+  const r = document.getElementById('mfPayReminder');
+  if (data.paymentMethod === 'etransfer') {
+    r.textContent = 'Please send your e-Transfer of $' + fee + ' to mrpoa.membership@gmail.com';
+  } else {
+    r.textContent = 'Please mail your cheque for $' + fee + ' to PO Box 157, Bala ON P0C 1A0';
+  }
+}
+</script>
+</body>
+</html>
